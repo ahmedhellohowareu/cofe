@@ -1278,6 +1278,38 @@ if __name__ == '__main__':
     conn = get_db_connection()
     cursor = conn.cursor()
 
+
+# ✅ أولًا: إنشاء جدول الجلسات قبل أي استخدام له
+    cursor.execute('''
+        CREATE TABLE IF NOT EXISTS sessions (
+            id INT AUTO_INCREMENT PRIMARY KEY,
+            user_id INT,
+            session_token VARCHAR(255),
+            user_ip VARCHAR(255),
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+        )
+    ''')
+
+    # ✅ ثم نفحص إذا كان العمود موجود أو لا
+    cursor.execute("SHOW COLUMNS FROM sessions LIKE 'user_ip'")
+    if not cursor.fetchone():
+        cursor.execute("ALTER TABLE sessions ADD COLUMN user_ip VARCHAR(255)")
+
+    # ✅ باقي الجداول
+    cursor.execute('''CREATE TABLE IF NOT EXISTS kitchen_types (...)''')
+    cursor.execute('''CREATE TABLE IF NOT EXISTS employees (...)''')
+    cursor.execute('''CREATE TABLE IF NOT EXISTS attendance (...)''')
+    cursor.execute('''CREATE TABLE IF NOT EXISTS users (...)''')
+    cursor.execute('''CREATE TABLE IF NOT EXISTS kitchens (...)''')
+    cursor.execute('''CREATE TABLE IF NOT EXISTS groups (...)''')
+    cursor.execute('''CREATE TABLE IF NOT EXISTS halls (...)''')
+    cursor.execute('''CREATE TABLE IF NOT EXISTS tables (...)''')
+
+    # ✅ تأكد من الجداول الإضافية
+    create_tables_if_not_exist()
+
+
     # ✅ أضف عمود user_ip إذا غير موجود
     cursor.execute("SHOW COLUMNS FROM sessions LIKE 'user_ip'")
     if not cursor.fetchone():
