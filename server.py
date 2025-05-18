@@ -21,10 +21,10 @@ CORS(app, resources={
 def get_db_connection():
     try:
         conn = mysql.connector.connect(
-            host='localhost',
-            user='root',           # Change this to your MySQL username
-            password='0000',    # Change this to your MySQL password
-            database='sakila'   # Change this to your database name
+            host='sql309.infinityfree.com',
+            user='if0_39017905',           # Change this to your MySQL username
+            password='AhmedSabah0980',    # Change this to your MySQL password
+            database='if0_39017905_XXX'   # Change this to your database name
         )
 
           # ← أضف هنا لضبط المنطقة الزمنية لجميع الجلسات
