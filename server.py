@@ -21,10 +21,10 @@ CORS(app, resources={
 def get_db_connection():
     try:
         conn = mysql.connector.connect(
-            host='sql309.infinityfree.com',
-            user='if0_39017905',           # Change this to your MySQL username
-            password='AhmedSabah0980',    # Change this to your MySQL password
-            database='if0_39017905_XXX'   # Change this to your database name
+            host='sql.freedb.tech',
+            user='freedb_11111',           # Change this to your MySQL username
+            password='Q5rB!Q$Ur4trJYQ',    # Change this to your MySQL password
+            database='freedb_ahmedsabah1998ah@gmail.com'   # Change this to your database name
         )
 
           # ← أضف هنا لضبط المنطقة الزمنية لجميع الجلسات
@@ -1431,5 +1431,5 @@ def get_order_for_timer(table_id):
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', debug=True, port=5001)
+    app.run(host='0.0.0.0', debug=True, port=3306)
 
